@@ -1,2 +1,1 @@
-# todol-list task 
-# main flow technologies 
+ todol-list task for full stack web development task for main flow technologies 
