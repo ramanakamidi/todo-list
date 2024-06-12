@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style: none;
+    }
+    body {
+        font-family:sans-serif;
+        background-color: #f4f4f9;
+        
+        height: 100vh;
+        
+    }
+    .container {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        min-height: 300px;
+    }
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #333;
+        text-align: center;
+    }
+    input[type="text"] {
+        width: calc(100% - 44px);
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+    button {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s;
+    }
+    button:hover {
+        background: #0056b3;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        background: #f9f9f9;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    li button {
+        background: #dc3545;
+        border: none;
+        color: #fff;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: background 0.3s;
+    }
+    li button:hover {
+        background: #c82333;
+    }
+    .nav{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 20vh;
+        background-color: white;
+    }
+    img{
+        margin-right: 20%;
+        height: 80px;
+        width: 100px;
+    }
+    .nav ul{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 50%;
+        
+    }
+    .todo-center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+    }
+    
+</style>
+</head>
+<body>
+<div class="nav">
+    <img src="https://th.bing.com/th/id/OIP.MRReeSXlno-zRPE0IkNdugHaFj?rs=1&pid=ImgDetMain" alt="">
+    <ul>
+    <li style="border: none; background-color: transparent; cursor:pointer"><a href="todo.html"></a>Home</li>
+    <li style="border: none; background-color: transparent;">about</li>
+    <li style="border: none; background-color: transparent;">Conact Us</li>
+    </ul>
+</div>
+<div class="todo-center">
+<div class="container">
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+</div>
+</div>
+
+<script>
+    let tasks = [];
+
+    function renderTasks() {
+        const taskList = document.getElementById('taskList');
+        taskList.innerHTML = '';
+        for (let i = 0; i < tasks.length; i++) {
+            const task = tasks[i];
+            const li = document.createElement('li');
+            li.textContent = task;
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = () => deleteTask(i);
+            li.appendChild(deleteButton);
+            taskList.appendChild(li);
+        }
+    }
+
+    function addTask() {
+        const taskInput = document.getElementById('taskInput');
+        const task = taskInput.value.trim();
+        if (task !== '') {
+            tasks.push(task);
+            taskInput.value = '';
+            renderTasks();
+        }
+    }
+
+    function deleteTask(index) {
+        tasks.splice(index, 1);
+        renderTasks();
+    }
+</script>
+
+</body>
+</html>
